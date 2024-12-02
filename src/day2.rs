@@ -29,10 +29,8 @@ fn parse_input(reader: impl std::io::BufRead) -> Input {
 fn is_safe(report: &Report) -> bool {
     let mut differences: Vec<i64> = vec![];
 
-    let mut i = 1;
-    while i < report.levels.len() {
+    for i in 1..report.levels.len() {
         differences.push(report.levels[i] - report.levels[i - 1]);
-        i += 1;
     }
 
     differences.iter().all(|&e| e >= 1 && e <= 3) || differences.iter().all(|&e| e >= -3 && e <= -1)
@@ -43,61 +41,37 @@ fn is_safe_part2(report: &Report) -> bool {
         return true;
     }
 
-    let mut index_to_skip = 0;
-    while index_to_skip < report.levels.len() {
-        let new_report: Report = {
-            Report {
-                levels: report
-                    .levels
-                    .iter()
-                    .enumerate()
-                    .flat_map(|(index, &value)| {
-                        if index == index_to_skip {
-                            None
-                        } else {
-                            Some(value)
-                        }
-                    })
-                    .collect(),
-            }
-        };
+    for index_to_skip in 0..report.levels.len() {
+        let mut new_levels: Vec<i64> = vec![];
+        new_levels.extend(&report.levels[0..index_to_skip]);
+        new_levels.extend(&report.levels[(index_to_skip + 1)..]);
+        let new_report: Report = { Report { levels: new_levels } };
         if is_safe(&new_report) {
             return true;
         };
-        index_to_skip += 1;
     }
 
     false
 }
 
-fn day2_part1(reader: impl std::io::BufRead) {
+fn part1(reader: impl std::io::BufRead) {
     let input = parse_input(reader);
 
-    let mut safe: i64 = 0;
-    for report in input.reports {
-        if is_safe(&report) {
-            safe += 1;
-        }
-    }
+    let safe = input.reports.iter().filter(|&e| is_safe(e)).count();
     println!("{} safe reports", safe)
 }
 
-fn day2_part2(reader: impl std::io::BufRead) {
+fn part2(reader: impl std::io::BufRead) {
     let input = parse_input(reader);
 
-    let mut safe: i64 = 0;
-    for report in input.reports {
-        if is_safe_part2(&report) {
-            safe += 1;
-        }
-    }
+    let safe = input.reports.iter().filter(|&e| is_safe_part2(e)).count();
     println!("{} safe reports", safe)
 }
 
 pub fn day2(part: u32, reader: impl std::io::BufRead) -> std::io::Result<()> {
     match part {
-        1 => Ok(day2_part1(reader)),
-        2 => Ok(day2_part2(reader)),
+        1 => Ok(part1(reader)),
+        2 => Ok(part2(reader)),
         _ => todo!(),
     }
 }
