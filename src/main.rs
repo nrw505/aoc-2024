@@ -1,6 +1,7 @@
 use clap::Parser;
 
 pub mod day1;
+pub mod day2;
 
 #[derive(Parser)]
 struct Args {
@@ -22,6 +23,7 @@ fn main() -> std::io::Result<()> {
 
     match args.day {
         1 => day1::day1(args.part, reader),
+        2 => day2::day2(args.part, reader),
         _ => todo!(),
     }
 }
