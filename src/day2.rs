@@ -68,7 +68,7 @@ fn part2(reader: impl std::io::BufRead) {
     println!("{} safe reports", safe)
 }
 
-pub fn day2(part: u32, reader: impl std::io::BufRead) -> std::io::Result<()> {
+pub fn doit(part: u32, reader: impl std::io::BufRead) -> std::io::Result<()> {
     match part {
         1 => Ok(part1(reader)),
         2 => Ok(part2(reader)),

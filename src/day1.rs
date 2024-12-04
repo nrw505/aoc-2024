@@ -39,7 +39,7 @@ fn parse_input(reader: impl std::io::BufRead) -> Input {
     res
 }
 
-fn day1_part1(reader: impl std::io::BufRead) {
+fn part1(reader: impl std::io::BufRead) {
     let input = parse_input(reader);
     let zipped = input.left.iter().zip(input.right.iter());
 
@@ -53,7 +53,7 @@ fn day1_part1(reader: impl std::io::BufRead) {
     println!("total is {}", sum)
 }
 
-fn day1_part2(reader: impl std::io::BufRead) {
+fn part2(reader: impl std::io::BufRead) {
     let input = parse_input(reader);
 
     let mut sum = 0;
@@ -66,10 +66,10 @@ fn day1_part2(reader: impl std::io::BufRead) {
     println!("total is {}", sum)
 }
 
-pub fn day1(part: u32, reader: impl std::io::BufRead) -> std::io::Result<()> {
+pub fn doit(part: u32, reader: impl std::io::BufRead) -> std::io::Result<()> {
     match part {
-        1 => Ok(day1_part1(reader)),
-        2 => Ok(day1_part2(reader)),
+        1 => Ok(part1(reader)),
+        2 => Ok(part2(reader)),
         _ => todo!(),
     }
 }

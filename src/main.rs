@@ -23,9 +23,9 @@ fn main() -> std::io::Result<()> {
     let reader = std::io::BufReader::new(file);
 
     match args.day {
-        1 => day1::day1(args.part, reader),
-        2 => day2::day2(args.part, reader),
-        3 => day3::day3(args.part, reader),
+        1 => day1::doit(args.part, reader),
+        2 => day2::doit(args.part, reader),
+        3 => day3::doit(args.part, reader),
         _ => todo!(),
     }
 }
