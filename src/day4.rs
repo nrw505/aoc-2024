@@ -28,14 +28,11 @@ fn find_cross(grid: &Grid<u8>, pos: (usize, usize)) -> usize {
         return 0;
     }
 
-    let diag1 = vec![(pos.0 - 1, pos.1 - 1), pos, (pos.0 + 1, pos.1 + 1)];
-    let diag2 = vec![(pos.0 - 1, pos.1 + 1), pos, (pos.0 + 1, pos.1 - 1)];
-    let cross1 = vec![(pos.0, pos.1 - 1), pos, (pos.0, pos.1 + 1)];
-    let cross2 = vec![(pos.0 - 1, pos.1), pos, (pos.0 + 1, pos.1)];
-
     let mas = "MAS".as_bytes();
     let sam = "SAM".as_bytes();
 
+    let diag1 = vec![(pos.0 - 1, pos.1 - 1), pos, (pos.0 + 1, pos.1 + 1)];
+    let diag2 = vec![(pos.0 - 1, pos.1 + 1), pos, (pos.0 + 1, pos.1 - 1)];
     let d1: Vec<u8> = diag1.iter().map(|&p| grid.at(p)).collect();
     let d2: Vec<u8> = diag2.iter().map(|&p| grid.at(p)).collect();
 
@@ -47,6 +44,8 @@ fn find_cross(grid: &Grid<u8>, pos: (usize, usize)) -> usize {
     /*
      * Part 2 does not allow + arrangement, just X
 
+    let cross1 = vec![(pos.0, pos.1 - 1), pos, (pos.0, pos.1 + 1)];
+    let cross2 = vec![(pos.0 - 1, pos.1), pos, (pos.0 + 1, pos.1)];
     let c1: Vec<u8> = cross1.iter().map(|&p| grid.at(p)).collect();
     let c2: Vec<u8> = cross2.iter().map(|&p| grid.at(p)).collect();
 
