@@ -1,9 +1,9 @@
 #[derive(Debug)]
-pub struct Grid<T: Copy> {
+pub struct Grid<T: Copy + PartialEq> {
     rows: Vec<Vec<T>>,
 }
 
-impl<T: Copy> Grid<T> {
+impl<T: Copy + PartialEq> Grid<T> {
     pub fn from_reader(reader: impl std::io::BufRead, splitter: fn(String) -> Vec<T>) -> Grid<T> {
         let mut res = Grid::<T> { rows: vec![] };
 
@@ -88,5 +88,23 @@ impl<T: Copy> Grid<T> {
             }
         }
         res
+    }
+
+    pub fn find(&self, item: T) -> Option<(usize, usize)> {
+        let w = self.width();
+        let h = self.height();
+
+        for x in 0..(w - 1) {
+            for y in 0..(h - 1) {
+                if self.at((x, y)) == item {
+                    return Some((x, y));
+                }
+            }
+        }
+        None
+    }
+
+    pub fn position_in_bounds(&self, pos: (usize, usize)) -> bool {
+        pos.0 < self.width() && pos.1 < self.height()
     }
 }
