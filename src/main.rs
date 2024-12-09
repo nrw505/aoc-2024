@@ -7,6 +7,7 @@ pub mod day4;
 pub mod day5;
 pub mod day6;
 pub mod day7;
+pub mod day8;
 
 #[derive(Parser)]
 struct Args {
@@ -34,6 +35,7 @@ fn main() -> std::io::Result<()> {
         5 => day5::doit(args.part, reader),
         6 => day6::doit(args.part, reader),
         7 => day7::doit(args.part, reader),
+        8 => day8::doit(args.part, reader),
         _ => todo!(),
     }
 }

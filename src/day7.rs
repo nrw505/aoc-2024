@@ -46,9 +46,7 @@ fn calculate_possibilities(numbers: &Vec<u64>) -> Vec<u64> {
 }
 
 fn is_possible(eqn: &Equation) -> bool {
-    let mut possibilities: Vec<u64> = vec![];
-
-    possibilities = calculate_possibilities(&eqn.numbers);
+    let possibilities = calculate_possibilities(&eqn.numbers);
     possibilities.contains(&eqn.result)
 }
 
@@ -83,9 +81,7 @@ fn calculate_possibilities_part2(numbers: &Vec<u64>) -> Vec<u64> {
 }
 
 fn is_possible_part2(eqn: &Equation) -> bool {
-    let mut possibilities: Vec<u64> = vec![];
-
-    possibilities = calculate_possibilities_part2(&eqn.numbers);
+    let possibilities = calculate_possibilities_part2(&eqn.numbers);
     possibilities.contains(&eqn.result)
 }
 

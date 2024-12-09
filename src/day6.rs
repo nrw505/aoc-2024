@@ -54,13 +54,6 @@ fn part1(reader: impl std::io::BufRead) {
     println!("visited {:?}", positions.len());
 }
 
-fn add_dir_to_pos(pos: (usize, usize), dir: (isize, isize)) -> (usize, usize) {
-    (
-        (pos.0 as isize + dir.0) as usize,
-        (pos.1 as isize + dir.1) as usize,
-    )
-}
-
 fn causes_a_loop(
     grid: &Grid<char>,
     start_pos: (usize, usize),
@@ -78,7 +71,7 @@ fn causes_a_loop(
     while pos.0 < width && pos.1 < height {
         positions.insert((pos, dir));
 
-        let newpos = add_dir_to_pos(pos, dir);
+        let newpos = grid.add_dir_to_pos(pos, dir);
         let r_right = rotate_right(dir);
 
         if !grid.position_in_bounds(newpos) {
@@ -117,7 +110,7 @@ fn part2(reader: impl std::io::BufRead) {
     while pos.0 < width && pos.1 < height {
         positions.insert(pos);
 
-        let newpos = add_dir_to_pos(pos, dir);
+        let newpos = input.grid.add_dir_to_pos(pos, dir);
         let r_right = rotate_right(dir);
 
         if input.grid.position_in_bounds(newpos) && input.grid.at(newpos) == '#' {
