@@ -42,6 +42,10 @@ impl<T: Copy + PartialEq + Eq + std::hash::Hash> Grid<T> {
         ]
     }
 
+    pub fn directions_without_diagonals(&self) -> Vec<(isize, isize)> {
+        vec![(0, -1), (1, 0), (0, 1), (-1, 0)]
+    }
+
     pub fn reverse(&self, dir: (isize, isize)) -> (isize, isize) {
         (-dir.0, -dir.1)
     }
