@@ -2,6 +2,7 @@ use clap::Parser;
 
 pub mod day1;
 pub mod day10;
+pub mod day11;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -40,6 +41,7 @@ fn main() -> std::io::Result<()> {
         8 => day8::doit(args.part, reader),
         9 => day9::doit(args.part, reader),
         10 => day10::doit(args.part, reader),
+        11 => day11::doit(args.part, reader),
         _ => todo!(),
     }
 }
